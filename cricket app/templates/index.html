@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live Cricket Matches</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #222;
+        color: white;
+        text-align: center;
+      }
+      .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 15px;
+        padding: 20px;
+        max-width: 1200px;
+        margin: auto;
+      }
+      .match-card {
+        background: linear-gradient(135deg, #00aaff, #00cc66, #000000);
+        border-radius: 10px;
+        padding: 20px;
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .match-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(255, 165, 0, 0.5);
+      }
+      a {
+        text-decoration: none;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Live Cricket Matches</h1>
+    <div class="container">
+      {% for match in matches %}
+      <a href="/match/{{ match.id }}">
+        <div class="match-card">{{ match.name }}</div>
+      </a>
+      {% endfor %}
+    </div>
+  </body>
+</html>

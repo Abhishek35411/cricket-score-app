@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Match Details</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #111;
+        color: white;
+        text-align: center;
+        padding: 20px;
+      }
+      .container {
+        width: 90%;
+        max-width: 500px;
+        margin: auto;
+        padding: 20px;
+        background: linear-gradient(135deg, #8b0000, #ffd700, #111111);
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(255, 215, 0, 0.5);
+        border: 2px solid #ffd700;
+        color: #fff;
+      }
+      .score-box {
+        background: linear-gradient(135deg, #d32f2f, #ffd700);
+        padding: 15px;
+        border-radius: 12px;
+        margin-top: 15px;
+        box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(10px);
+        transition: transform 0.2s ease-in-out;
+      }
+      .score-box:hover {
+        transform: scale(1.05);
+      }
+      .score-box h3 {
+        margin: 0;
+        font-size: 20px;
+        color: #fff;
+        text-shadow: 1px 1px 4px #000;
+      }
+      .score-box p {
+        margin: 8px 0;
+        font-size: 18px;
+        color: #fff;
+      }
+      .score-box span {
+        font-weight: bold;
+        color: #ffd700;
+      }
+      .back-button {
+        display: inline-block;
+        margin: 20px auto;
+        padding: 12px 20px;
+        background: linear-gradient(135deg, #ff0000, #b71c1c);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        transition: 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(255, 0, 0, 0.5);
+      }
+      .back-button:hover {
+        background: linear-gradient(135deg, #b71c1c, #ff0000);
+        transform: scale(1.1);
+      }
+    </style>
+  </head>
+  <body>
+    {% if error %}
+    <h1>{{ error }}</h1>
+    {% else %}
+    <div class="container">
+      <h1 style="text-shadow: 2px 2px 4px #ffd700">{{ match.name }}</h1>
+      <p><strong>Status:</strong> {{ match.status }}</p>
+
+      <h2 style="color: #ffd700; text-shadow: 1px 1px 3px black">Scoreboard</h2>
+
+      {% if match.score %} {% for inning in match.score %}
+      <div class="score-box">
+        <h3>{{ inning.inning }}</h3>
+        <p><span>Runs:</span> {{ inning.r }}</p>
+        <p><span>Wickets:</span> {{ inning.w }}</p>
+        <p><span>Overs:</span> {{ inning.o }}</p>
+      </div>
+      {% endfor %} {% else %}
+      <p>No score available.</p>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    <a href="/" class="back-button">🏏 Back to Matches</a>
+  </body>
+</html>
